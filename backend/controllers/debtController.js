@@ -1,9 +1,13 @@
-const { Debt, Payment, Reminder } = require('../models');
+const { Debt, Payment, Reminder, Loan } = require('../models');
 
 async function listDebts(req, res) {
   try {
-    const debts = await Debt.findAll({ where: { user_id: req.user.id }, order: [['due_date','ASC']] });
-    res.json(debts);
+    const debts = await Debt.findAll({
+      where: { user_id: req.user.id },
+      include: [{ model: Loan, as: 'loan', attributes: ['id', 'name'] }],
+      order: [['due_date','ASC']]
+    });
+    res.json(debts.map((debt) => debt.toJSON()));
   } catch (err) {
     res.status(500).json({ message: 'Error al obtener deudas', error: err.message });
   }

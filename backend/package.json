@@ -8,13 +8,14 @@
     "seed": "node seeds/seed.js"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.3.0",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
